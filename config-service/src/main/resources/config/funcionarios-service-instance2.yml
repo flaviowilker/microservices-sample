@@ -1,0 +1,54 @@
+server:
+  port: 8084
+  ssl:
+    enabled: true
+    key-store-type: PKCS12
+    key-store: classpath:keystore/micro.p12
+    key-store-password: micro
+    key-alias: micro
+    key-password: micro
+  http2:
+    enabled: true
+
+eureka:
+  instance:
+    nonSecurePortEnabled: false
+    securePortEnabled: true
+    securePort: ${server.port}
+    statusPageUrl: https://${eureka.hostname}:${server.port}/actuator/info
+    healthCheckUrl: https://${eureka.hostname}:${server.port}/actuator/health
+    homePageUrl: https://${eureka.hostname}:${server.port}/
+    leaseRenewalIntervalInSeconds: 15
+  client:
+    registryFetchIntervalSeconds: 15
+    healthcheck:
+      enabled: true
+
+spring:
+  datasource:
+    hikari:
+      connection-timeout: 20000
+      maximum-pool-size: 1
+    url: jdbc:postgresql://localhost:5432/microservices-sample
+    username: postgres
+    password: postgres
+  jpa:
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+    
+logging:
+  pattern: 
+    console: "%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%5p) %clr(${PID}){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n%wEx"
+
+props:
+  jwt:
+    public-key: classpath:keystore/public-key.txt

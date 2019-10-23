@@ -1,0 +1,64 @@
+server:
+  port: 8081
+  compression:
+    enabled: true
+  ssl:
+    enabled: true
+    key-store-type: PKCS12
+    key-store: classpath:keystore/micro.p12
+    key-store-password: micro
+    key-alias: micro
+    key-password: micro
+
+eureka:
+  instance:
+    nonSecurePortEnabled: false
+    securePortEnabled: true
+    securePort: ${server.port}
+    statusPageUrl: https://${eureka.hostname}:${server.port}/actuator/info
+    healthCheckUrl: https://${eureka.hostname}:${server.port}/actuator/health
+    homePageUrl: https://${eureka.hostname}:${server.port}/
+    leaseRenewalIntervalInSeconds: 15
+  client:
+    registryFetchIntervalSeconds: 5
+    healthcheck:
+      enabled: true
+
+spring:
+  cloud:
+    gateway:
+      httpclient:
+        ssl:
+          useInsecureTrustManager: true
+      discovery:
+        locator:
+          enabled: true
+      routes:
+      - id: auth-service
+        uri: lb://auth-service
+        predicates:
+        - Path=/auth/**
+        filters:
+        - RewritePath=/auth/(?<path>.*), /$\{path}
+      - id: funcionarios-service
+        uri: lb://funcionarios-service
+        predicates:
+        - Path=/funcionarios/**
+        filters:
+        - RewritePath=/funcionarios/(?<path>.*), /$\{path}
+      - id: estados-service
+        uri: lb://estados-service
+        predicates:
+        - Path=/estados/**
+        filters:
+        - RewritePath=/estados/(?<path>.*), /$\{path}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+logging:
+  pattern: 
+    console: "%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%5p) %clr(${PID}){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n%wEx"

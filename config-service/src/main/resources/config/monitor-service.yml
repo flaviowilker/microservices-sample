@@ -1,0 +1,48 @@
+server:
+  port: 8072
+  ssl:
+    enabled: true
+    key-store-type: PKCS12
+    key-store: classpath:keystore/micro.p12
+    key-store-password: micro
+    key-alias: micro
+    key-password: micro
+  http2:
+    enabled: true
+
+eureka:
+  instance:
+    nonSecurePortEnabled: false
+    securePortEnabled: true
+    securePort: ${server.port}
+    statusPageUrl: https://${eureka.hostname}:${server.port}/actuator/info
+    healthCheckUrl: https://${eureka.hostname}:${server.port}/actuator/health
+    homePageUrl: https://${eureka.hostname}:${server.port}/
+    leaseRenewalIntervalInSeconds: 15
+    health-check-url-path: /actuator/health
+    metadata-map:
+      startup: ${random.int}
+  client:
+    registryFetchIntervalSeconds: 15
+    healthcheck:
+      enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+
+logging:
+  pattern: 
+    console: "%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%5p) %clr(${PID}){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n%wEx"
+
+props:
+  client:
+    client-id: clientService
+    secret: secret
+    access-token-service: auth-service
+    access-token-path: /oauth/token
