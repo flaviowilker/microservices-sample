@@ -1,0 +1,286 @@
+{
+	"info": {
+		"_postman_id": "6f67d53b-5324-424c-8405-90a48fa7f345",
+		"name": "Oauth",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "token",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "secret",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "clientId",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "text/plain",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "TESTE",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "pass",
+							"type": "text"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "text"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8081/auth/oauth/token",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"auth",
+						"oauth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "refresh_token",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "secret",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "clientId",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "text/plain",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "refresh_token",
+							"type": "text"
+						},
+						{
+							"key": "refresh_token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJURVNURSIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdLCJhdGkiOiI3ODNmNWE4Yi04N2E2LTQwYjUtYTBiYi03OWE0YTUxYjlkNjYiLCJleHAiOjE1Njg4MTQwMzMsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJqdGkiOiI4ZTg5M2RlNS01M2E5LTQ5ZjUtOThlYy02NjZkZTVjZTQwNDkiLCJjbGllbnRfaWQiOiJjbGllbnRJZCJ9.mMfpv_P0OxhFIAOf6lHCYkWTaQxWLaV-JcXBX6VvY7yXdmnofKe38oTf9xdSe4_T6ZFqLU3oAlfORd9i1Bc1PqHnkbcPGFFNZFo0l1eSvpTwWUS6KLBMVsP-_bGtkpOuTVALQTym2QoqIRws-p_FbRleWcrdalysaImt5xfUKtMhdOiCCSErewoa_TliMU9wYVRbOM0x-cPwA-XKaIQKiDgiNc0lrEVsnHKQ6X5gMteNcLA-Dosvv5Sv_C306htNUPVjqLhoEeCkSzI6WS56Kr9eVPMW-u7TUlduDCEE4V0VmD_fFxRDTNQ9ibRiJ9zillgoy1RsaMqACI3RWGP_ww",
+							"type": "text"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "text"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8081/auth/oauth/token",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"auth",
+						"oauth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "usuário atual",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1Njk5NDYxNDksInVzZXJfbmFtZSI6IlRFU1RFIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9VU0VSIl0sImp0aSI6IjMxMTEyN2MxLWM5ZmQtNGFkMC05NTcyLTllYmExNTVjZDM0YiIsImNsaWVudF9pZCI6ImNsaWVudElkIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl19.TefwLCQr6-_AsfxjrRvmEgzr5TuZxmOEPD0pJIOYH81rrPAkmMkPg7Y4Rp3zhPt1i6Jtf4lN4i7DUIprpO_09NbC-7rdLWBx9iXcJJCBVI2D3HowSsO5A0HCoCWMVJ6H16eDAk8WrU2APYeEGraVnU9rd59sqilcEWtQguWM6-11IXt17MypxVd9GKlUUjs5MI-KAgn7bOgWDtBVdQkrPoNfKEizr2UolO4CUI4VdKQhdv0BQ--FI_97uDqIlgLjLDhmiujPjHaWrdEX9TBJgVyb6P-hMojaOi_Mytl_e70WhOO9mgcDAULy6DwZuB5DEtCbY0s_rBxnWcUdSHY5ZQ",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:8081/auth/users/me",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"auth",
+						"users",
+						"me"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "actuator",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1Njg5MDQwOTMsInVzZXJfbmFtZSI6IlRFU1RFIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9VU0VSIl0sImp0aSI6ImI2N2I5ZTkzLTkyYmItNDQxYy1hZjljLWRmOTI4NTFkNjQ2YyIsImNsaWVudF9pZCI6ImNsaWVudElkIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl19.dr5YVRrP3fUMjD81lxEpC3gWNZFpx8Wwbln9qWFae0IEPWeuf1BbacWJ0zF5Fs5CISPwN1QbE9xtQQiQT6ClwNyPiuhNVN3L6gBLgiqxzC4l-8coCYfpeAbtDdD4ccW86ubDXZwxx2zvnsYiW1ovCrWEC2qQVSKOMFbyY8WsBc6XgLhssluqyG3OT5ghCmIyWIGP_mjq-ZWE1tjubI-q7JZcL0FWN1iIsPZe1z3LjnBWgzSik2I4inmGguwYfERN_FtoZa4Ezqa2p4LkOe2gNFW_oP8V6uAyW6GUr3eI0yINKKddRjKxMVqwgRsAFl6bNkHrB3mx-gxiSuWQuhbw4g",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:8081/auth/actuator/mappings",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"auth",
+						"actuator",
+						"mappings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "token_key",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:8081/auth/oauth/token_key",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"auth",
+						"oauth",
+						"token_key"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "client_credentials",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "clientService",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "secret",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "text/plain",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "text"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "text"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8081/auth/oauth/token",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"auth",
+						"oauth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
