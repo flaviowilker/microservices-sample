@@ -26,6 +26,10 @@ eureka:
     registryFetchIntervalSeconds: 15
     healthcheck:
       enabled: true
+      
+spring:
+  jmx:
+    enabled: true
 
 management:
   endpoints:

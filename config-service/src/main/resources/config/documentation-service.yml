@@ -41,6 +41,10 @@ zuul:
       serviceId: funcionarios-service
       sensitiveHeaders: Cookie,Set-Cookie
 
+spring:
+  jmx:
+    enabled: true
+
 management:
   endpoints:
     web:

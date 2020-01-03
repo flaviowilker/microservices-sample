@@ -52,6 +52,8 @@ spring:
         - Path=/estados/**
         filters:
         - RewritePath=/estados/(?<path>.*), /$\{path}
+  jmx:
+    enabled: true
 
 management:
   endpoints:

@@ -12,6 +12,8 @@ server:
 spring:
   application:
     name: config-service
+  jmx:
+    enabled: true
   profiles:
     active: native
 
